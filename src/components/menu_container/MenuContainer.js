@@ -27,11 +27,13 @@ export default class MenuContainer extends React.Component {
           name: 'Cake',
           imageUrl:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTV8oXLZoi401nsbtS2y3Lg-_W46N1hjGSptWnRdIsWMLhFumZ0',
+          size: 'large',
         },
         {
           name: 'Korean(Original)',
           imageUrl:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQM_3jAsm3r3QSM-HdXiLAKYUSdIkpG2N-OAp35NIkWzegW2T0f',
+          size: 'large',
         },
       ],
     };
@@ -42,8 +44,8 @@ export default class MenuContainer extends React.Component {
 
     return (
       <div className="menu-container">
-        {category.map(({ name, imageUrl }) => (
-          <MenuItem key={name} name={name} imageUrl={imageUrl} />
+        {category.map(({ name, imageUrl, size }) => (
+          <MenuItem key={name} name={name} imageUrl={imageUrl} size={size} />
         ))}
       </div>
     );

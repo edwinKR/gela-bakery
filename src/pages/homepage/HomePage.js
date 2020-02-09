@@ -9,9 +9,7 @@ const HomePage = () => {
     <div className="homepage">
       <h1>Welcome to Jela's Bakery!</h1>
 
-      <div className="menu-container">
-        <MenuContainer />
-      </div>
+      <MenuContainer />
     </div>
   );
 };
