@@ -1,5 +1,6 @@
 import React from 'react';
-import MenuContainer from './MenuContainer';
+
+import MenuContainer from '../../components/menu_container/MenuContainer';
 
 import './homepage.style.scss';
 
@@ -8,7 +9,9 @@ const HomePage = () => {
     <div className="homepage">
       <h1>Welcome to Jela's Bakery!</h1>
 
-      <MenuContainer />
+      <div className="menu-container">
+        <MenuContainer />
+      </div>
     </div>
   );
 };
