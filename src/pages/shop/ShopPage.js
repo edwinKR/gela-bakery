@@ -1,37 +1,26 @@
 import React from 'react';
-import generateDataCollection from './shop_dummy_data.js';
+import SHOPPING_DUMMY_DATA from './shop_dummy_data.js';
+
+import PreviewAllItems from '../../components/preview_all_item/PreviewAllItems';
 
 class ShopPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      shopData: [],
+      shopData: SHOPPING_DUMMY_DATA,
     };
-  }
-
-  async componentDidMount() {
-    const generatedData = await generateDataCollection();
-    console.log(generatedData);
-    this.setState({
-      shopData: generatedData,
-    });
   }
 
   render() {
     const { shopData } = this.state;
-    console.log(shopData);
+
     return (
-      <ul>
-        {shopData.map(el => {
-          return (
-            <li key={el.id}>
-              {el.name}
-              <img src={el.imageUrl} alt={el.name} />
-            </li>
-          );
+      <div className="shop-page">
+        {shopData.map(({ id, ...otherPreviewAllItemsProps }) => {
+          return <PreviewAllItems key={id} {...otherPreviewAllItemsProps} />;
         })}
-      </ul>
+      </div>
     );
   }
 }
