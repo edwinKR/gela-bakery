@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+
+  span {
+    color: grey;
+    font-weight: lighter;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

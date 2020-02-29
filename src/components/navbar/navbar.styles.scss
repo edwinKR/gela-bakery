@@ -7,9 +7,13 @@
   margin-bottom: 20px;
 
   .option-container {
+    display: flex;
+
     .option {
       padding-left: 10px;
       padding-right: 10px;
+      cursor: pointer;
+      color: orange;
     }
   }
 }
