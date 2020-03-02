@@ -38,5 +38,30 @@ export const signInWithGoogle = () => {
   return auth.signInWithPopup(provider);
 };
 
+// Creating user on the firestore DB
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log('Error! User not creating..', error.message);
+    }
+  }
+  console.log(userRef);
+  return userRef;
+};
 // Export the entire Firebase library just in case we need it in the app.
 export default firebase;
