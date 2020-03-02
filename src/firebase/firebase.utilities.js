@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/prefer-default-export */
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from 'firebase/app';

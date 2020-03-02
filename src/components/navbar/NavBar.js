@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// connect: is a HOC that allows us to modify our react components have access to the redux state.
+import { connect } from 'react-redux';
+
 import { auth } from '../../firebase/firebase.utilities';
 import './navbar.styles.scss';
 
@@ -32,4 +35,10 @@ const NavBar = ({ currentUser }) => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.user.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(NavBar);

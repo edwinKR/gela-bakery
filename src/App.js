@@ -1,22 +1,20 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+// connect: is a HOC that allows us to modify our react components have access to the redux state.
+import { connect } from 'react-redux';
+
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import LoginSignupPage from './pages/login_signup_page/LoginSignupPage';
 import NavBar from './components/navbar/NavBar';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utilities';
+import { setCurrentUser } from './redux/user/user_action';
+
 import './App.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -34,21 +32,17 @@ class App extends React.Component {
           // Auth approved user data retrieved from firestore DB
           const userData = snapShot.data();
 
-          this.setState(
+          this.props.setCurrentUser(
             {
-              currentUser: {
-                id: snapShot.id,
-                ...userData,
-              },
+              id: snapShot.id,
+              ...userData,
             },
             () => console.log(this.state),
           );
         });
       } else {
         // No user is signed in. (In this case, userAuth will be already set to null)
-        this.setState({
-          currentUser: userAuth,
-        });
+        this.props.setCurrentUser(userAuth);
       }
     });
   }
@@ -60,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar currentUser={this.state.currentUser} />
+        <NavBar />
 
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
@@ -70,4 +64,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  // dispatch function: Informs redux that an object will be sent as an action object.
+  return {
+    setCurrentUser: user => dispatch(setCurrentUser(user)),
+  };
+};
+
+// Don't need the mapDispatchToState for the App.js component since we don't need any state to be used in this current component.
+export default connect(null, mapDispatchToProps)(App);
