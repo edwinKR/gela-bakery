@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 // connect: is a HOC that allows us to modify our react components have access to the redux state.
 import { connect } from 'react-redux';
@@ -58,11 +58,20 @@ class App extends React.Component {
 
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
-        <Route path="/login" component={LoginSignupPage} />
+        <Route
+          path="/login"
+          render={() => (this.props.currentUser ? <Redirect to="/" /> : <LoginSignupPage />)}
+        />
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => {
+  return {
+    currentUser: user.currentUser,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   // dispatch function: Informs redux that an object will be sent as an action object.
@@ -71,5 +80,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// Don't need the mapDispatchToState for the App.js component since we don't need any state to be used in this current component.
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
