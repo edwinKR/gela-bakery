@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utilities';
+import CartIcon from '../cart_icon_component/cart_icon';
+import CartDropdown from '../cart_dropdown_component/cart_dropdown';
+
 import './navbar.styles.scss';
 
-const NavBar = ({ currentUser }) => {
+const NavBar = ({ currentUser, hidden }) => {
   return (
     <div className="navbar">
       <div className="logo-container">
@@ -30,14 +33,22 @@ const NavBar = ({ currentUser }) => {
             LOG IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
 const mapStateToProps = state => {
+  const {
+    user: { currentUser },
+    cart: { hidden },
+  } = state;
+
   return {
-    currentUser: state.user.currentUser,
+    currentUser,
+    hidden,
   };
 };
 

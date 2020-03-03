@@ -1,0 +1,23 @@
+.cart-icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  .cart-image {
+    width: 25px;
+    height: 25px;
+  }
+
+  .item-counter-badge {
+    position: absolute;
+    border-radius: 50%;
+    background-color: orange;
+    color: white;
+    padding: 0 5px;
+    font-size: 12px;
+  }
+}
