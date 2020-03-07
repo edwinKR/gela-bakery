@@ -3,7 +3,6 @@ import SingleItem from '../single_item/SingleItem';
 import './preview_all_items.styles.scss';
 
 const PreviewAllItem = props => {
-  console.log(props);
   const { category, items } = props;
   return (
     <div className="preview-all-items">

@@ -5,7 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
+  margin: 0 15px;
+  position: relative;
 
   .image {
     width: 100%;
@@ -13,6 +14,23 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+
+    .button-component {
+      position: absolute;
+      top: 130px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    &:hover {
+      .button-component {
+        display: block;
+        background-color: #1a73e8;
+        opacity: 0.85;
+      }
+    }
   }
 
   .preview-footer {
