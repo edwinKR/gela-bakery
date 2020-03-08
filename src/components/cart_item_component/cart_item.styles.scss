@@ -1,0 +1,25 @@
+.single-cart-item {
+  width: 100%;
+  display: flex;
+  margin: 8px 10px;
+
+  img {
+    width: 40%;
+  }
+
+  .item-detail {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .item-name {
+      font-size: 18px;
+    }
+
+    .item-price {
+      font-family: 'Arial Narrow';
+    }
+  }
+}

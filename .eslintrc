@@ -23,6 +23,7 @@
     "jsx-a11y/click-events-have-key-events": ["off"],
     "react/no-unescaped-entities": ["off"],
     "react/jsx-props-no-spreading": ["off"],
-    "eslint-disable react/sort-comp": ["off"]
+    "eslint-disable react/sort-comp": ["off"],
+    "import/prefer-default-export": ["off"]
   }
 }

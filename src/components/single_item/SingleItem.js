@@ -8,7 +8,6 @@ import { addItem } from '../../redux/cart/cart_action';
 import './single_item.styles.scss';
 
 const SingleItem = props => {
-  console.log(props);
   const { name, imageUrl, price } = props.singleItem;
   const { addItem } = props;
   return (
