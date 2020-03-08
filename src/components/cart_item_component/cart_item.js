@@ -3,7 +3,6 @@ import React from 'react';
 import './cart_item.styles.scss';
 
 const CartItem = ({ singleCartItem }) => {
-  console.log(singleCartItem);
   const { name, imageUrl, price, quantity } = singleCartItem;
 
   return (

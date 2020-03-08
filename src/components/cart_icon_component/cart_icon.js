@@ -7,13 +7,24 @@ import './cart_icon.styles.scss';
 
 const cartImage = '/cart.png';
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = ({ toggleCartHidden, totalCartItems }) => {
   return (
     <div className="cart-icon" onClick={toggleCartHidden}>
       <img src={cartImage} alt="cart-icon" className="cart-image" />
-      <div className="item-counter-badge">0</div>
+      <div className="item-counter-badge">{totalCartItems}</div>
     </div>
   );
+};
+
+const mapStateToProps = state => {
+  const { cartItems } = state.cart;
+  const totalCartItems = cartItems.reduce((currentTotal, cartItem) => {
+    return currentTotal + cartItem.quantity;
+  }, 0);
+
+  return {
+    totalCartItems,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -22,4 +33,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
