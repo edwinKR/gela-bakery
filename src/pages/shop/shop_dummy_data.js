@@ -156,7 +156,7 @@ const SHOPPING_DUMMY_DATA = [
       },
       {
         id: 18,
-        name: 'Tan Trench',
+        name: 'Oreo',
         imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/b/b9/Chocolate_Chip_Cookies_-_kimberlykv.jpg',
         price: 185,
@@ -170,49 +170,49 @@ const SHOPPING_DUMMY_DATA = [
     items: [
       {
         id: 19,
-        name: 'Blue Tanktop',
+        name: 'Cheesecake',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 25,
       },
       {
         id: 20,
-        name: 'Floral Blouse',
+        name: 'Strawberry',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 20,
       },
       {
         id: 21,
-        name: 'Floral Dress',
+        name: 'Flower Cake',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 80,
       },
       {
         id: 22,
-        name: 'Red Dots Dress',
+        name: 'Chocolate Moose',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 80,
       },
       {
         id: 23,
-        name: 'Striped Sweater',
+        name: 'Coconut Cake',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 45,
       },
       {
         id: 24,
-        name: 'Yellow Track Suit',
+        name: 'Lemon Cream',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 135,
       },
       {
         id: 25,
-        name: 'White Blouse',
+        name: 'White Chocolate',
         imageUrl:
           'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?cs=srgb&dl=blueberries-cake-chocolate-chocolate-cake-291528.jpg&fm=jpg',
         price: 20,
@@ -226,42 +226,42 @@ const SHOPPING_DUMMY_DATA = [
     items: [
       {
         id: 26,
-        name: 'Camo Down Vest',
+        name: 'Injeolmi',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 325,
       },
       {
         id: 27,
-        name: 'Floral T-shirt',
+        name: 'Rainbow Rice Cake',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 20,
       },
       {
         id: 28,
-        name: 'Black & White Longsleeve',
+        name: 'Ho Dduk',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 25,
       },
       {
         id: 29,
-        name: 'Pink T-shirt',
+        name: 'Ssook Dduk',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 25,
       },
       {
         id: 30,
-        name: 'Jean Long Sleeve',
+        name: 'Song Pyeon',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 40,
       },
       {
         id: 31,
-        name: 'Burgundy T-shirt',
+        name: 'Hook Im Ja',
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB4JGAzWpX8QlqtwENL5g9FZpldz2YAQxZ2eUYb9tjMnVxKOPh',
         price: 25,

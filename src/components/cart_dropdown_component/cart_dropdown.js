@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import ButtonComponent from '../button_component/ButtonComponent';
 import CartItem from '../cart_item_component/cart_item';
@@ -8,14 +9,19 @@ import './cart_dropdown.styles.scss';
 
 const CartDropdown = props => {
   const { cartItems } = props;
+  console.log(props);
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {cartItems.map(singleCartItem => {
-          return <CartItem key={singleCartItem.id} singleCartItem={singleCartItem} />;
-        })}
+        {cartItems.length ? (
+          cartItems.map(singleCartItem => {
+            return <CartItem key={singleCartItem.id} singleCartItem={singleCartItem} />;
+          })
+        ) : (
+          <span className="cart-empty">Cart Empty</span>
+        )}
       </div>
-      <ButtonComponent>CHECKOUT</ButtonComponent>
+      <ButtonComponent onClick={() => props.history.push('/checkout')}>CHECKOUT</ButtonComponent>
     </div>
   );
 };
@@ -25,4 +31,4 @@ const mapStateToProps = state => {
   return { cartItems };
 };
 
-export default connect(mapStateToProps)(CartDropdown);
+export default withRouter(connect(mapStateToProps)(CartDropdown));

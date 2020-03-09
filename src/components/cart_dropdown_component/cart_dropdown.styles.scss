@@ -16,9 +16,15 @@
     display: flex;
     flex-direction: column;
     overflow: scroll;
+
+    .cart-empty {
+      font-family: 'Arial Narrow';
+      color: gray;
+      margin: auto;
+    }
   }
 
   button {
-    margin-top: auto;
+    margin: 10px auto;
   }
 }

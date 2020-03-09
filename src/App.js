@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import LoginSignupPage from './pages/login_signup_page/LoginSignupPage';
+import CheckoutPage from './pages/checkout_page/CheckoutPage';
+
 import NavBar from './components/navbar/NavBar';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utilities';
@@ -57,6 +59,7 @@ class App extends React.Component {
         <NavBar />
 
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route path="/shop" component={ShopPage} />
         <Route
           path="/login"
