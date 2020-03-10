@@ -18,3 +18,19 @@ export const addItemToCart = (currentCartItems, itemToAdd) => {
   // If added item is added to the cart list for the first time:
   return [...currentCartItems, { ...itemToAdd, quantity: 1 }];
 };
+
+export const decrementItemFromCart = (currentCartItems, itemToRemove) => {
+  const existingCartItem = currentCartItems.find(item => {
+    return item.id === itemToRemove.id;
+  });
+
+  return currentCartItems.map(item => {
+    if (item.id === itemToRemove.id) {
+      if (existingCartItem.quantity === 1) {
+        return { ...item, quantity: 1 };
+      }
+      return { ...item, quantity: item.quantity - 1 };
+    }
+    return item;
+  });
+};

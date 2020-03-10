@@ -35,7 +35,10 @@ const CheckoutPage = props => {
   );
 };
 
-const mapStateToProps = ({ cart: { cartItems } }) => {
+const mapStateToProps = props => {
+  const {
+    cart: { cartItems },
+  } = props;
   const totalPrice = cartItems.reduce((accumulatedPrice, cartItem) => {
     return accumulatedPrice + cartItem.quantity * cartItem.price;
   }, 0);

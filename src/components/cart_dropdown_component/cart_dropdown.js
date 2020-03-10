@@ -9,7 +9,6 @@ import './cart_dropdown.styles.scss';
 
 const CartDropdown = props => {
   const { cartItems } = props;
-  console.log(props);
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
