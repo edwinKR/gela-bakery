@@ -4,15 +4,20 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Component class that allows access to the redux store
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import storeFunc from './redux/store';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const { store, persistor } = storeFunc();
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
