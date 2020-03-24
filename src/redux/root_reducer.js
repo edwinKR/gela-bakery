@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from './user/user_reducer';
 import cartReducer from './cart/cart_reducer';
+import menuDirReducer from './menu_directory/menu_directory_reducer';
 
 const rootPersistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const rootPersistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
+  menuDirectory: menuDirReducer,
 });
 
 // Our full state of redux is 'one big JSON object'
