@@ -1,42 +1,21 @@
 import React from 'react';
-import SHOPPING_DUMMY_DATA from './shop_dummy_data.js';
+import { connect } from 'react-redux';
 
 import PreviewAllItems from '../../components/preview_all_item/PreviewAllItems';
 
-class ShopPage extends React.Component {
-  constructor(props) {
-    super(props);
+const ShopPage = props => {
+  const { shopData } = props;
 
-    this.state = {
-      shopData: SHOPPING_DUMMY_DATA,
-    };
-  }
+  return (
+    <div className="shop-page">
+      {shopData.map(({ id, ...otherPreviewAllItemsProps }) => {
+        return <PreviewAllItems key={id} {...otherPreviewAllItemsProps} />;
+      })}
+    </div>
+  );
+};
 
-  render() {
-    const { shopData } = this.state;
-
-    return (
-      <div className="shop-page">
-        {shopData.map(({ id, ...otherPreviewAllItemsProps }) => {
-          return <PreviewAllItems key={id} {...otherPreviewAllItemsProps} />;
-        })}
-      </div>
-    );
-  }
-}
-
-export default ShopPage;
-
-// {shopData.length > 0 ? (
-//   shopData.map(el => {
-//     console.log(el);
-//     return (
-//       <li key={el.id}>
-//         {el.name}
-//         <img src={el.imageUrl} alt={el.name} />
-//       </li>
-//     );
-//   })
-// ) : (
-//   <p>No Data</p>
-// )}
+const mapStateToProps = ({ shop: { shopData } }) => {
+  return { shopData };
+};
+export default connect(mapStateToProps)(ShopPage);
