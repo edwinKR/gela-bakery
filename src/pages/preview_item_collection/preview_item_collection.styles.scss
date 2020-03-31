@@ -1,0 +1,14 @@
+.preview_item_collection {
+  display: flex;
+  flex-direction: column;
+
+  .items {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+
+    & .single-item {
+      margin: 0px;
+    }
+  }
+}

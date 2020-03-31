@@ -1,21 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
-import PreviewAllItems from '../../components/preview_all_item/PreviewAllItems';
+import PreviewAllItemContainer from '../../components/preview_all_item_container/PreviewAllItemContainer';
+import PreviewItemCollection from '../preview_item_collection/PreviewItemCollection';
 
 const ShopPage = props => {
-  const { shopData } = props;
-
+  const { match } = props;
   return (
     <div className="shop-page">
-      {shopData.map(({ id, ...otherPreviewAllItemsProps }) => {
-        return <PreviewAllItems key={id} {...otherPreviewAllItemsProps} />;
-      })}
+      <Route exact path={`${match.path}`} component={PreviewAllItemContainer} />
+      <Route path={`${match.path}/:collectionRouteName`} component={PreviewItemCollection} />
     </div>
   );
 };
 
-const mapStateToProps = ({ shop: { shopData } }) => {
-  return { shopData };
-};
-export default connect(mapStateToProps)(ShopPage);
+export default ShopPage;

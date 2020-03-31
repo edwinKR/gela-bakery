@@ -1,26 +1,5 @@
-// async function generateDataCollection() {
-//   const promises = [];
-//   for (let i = 0; i < 10; i++) {
-//     promises.push(fetch('https://dog.ceo/api/breeds/image/random'));
-//   }
-
-//   const collectedPromises = await Promise.all(promises);
-//   const collectedResponses = await Promise.all(collectedPromises.map(res => res.json()));
-
-//   return collectedResponses.map((data, uid) => {
-//     const newData = {};
-//     newData.id = uid;
-//     newData.name = `Doggie ${newData.id}`;
-//     newData.imageUrl = data.message;
-//     newData.price = Math.floor(Math.random() * 10) + 1;
-//     return newData;
-//   });
-// }
-
-// export default generateDataCollection;
-
-const SHOPPING_DUMMY_DATA = [
-  {
+const SHOPPING_DUMMY_DATA = {
+  bread: {
     id: 1,
     category: 'Bread',
     routeName: 'bread',
@@ -90,7 +69,7 @@ const SHOPPING_DUMMY_DATA = [
       },
     ],
   },
-  {
+  macaroon: {
     id: 2,
     category: 'Macaroon',
     routeName: 'macaroon',
@@ -121,7 +100,7 @@ const SHOPPING_DUMMY_DATA = [
       },
     ],
   },
-  {
+  cookies: {
     id: 3,
     category: 'Cookies',
     routeName: 'cookies',
@@ -163,7 +142,7 @@ const SHOPPING_DUMMY_DATA = [
       },
     ],
   },
-  {
+  cake: {
     id: 4,
     category: 'Cake',
     routeName: 'cake',
@@ -219,7 +198,7 @@ const SHOPPING_DUMMY_DATA = [
       },
     ],
   },
-  {
+  korean: {
     id: 5,
     category: 'Korean',
     routeName: 'korean',
@@ -268,6 +247,6 @@ const SHOPPING_DUMMY_DATA = [
       },
     ],
   },
-];
+};
 
 export default SHOPPING_DUMMY_DATA;
