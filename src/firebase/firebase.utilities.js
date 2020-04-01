@@ -61,7 +61,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       console.log('Error! User not creating..', error.message);
     }
   }
-  console.log(userRef);
   return userRef;
 };
 // Export the entire Firebase library just in case we need it in the app.
