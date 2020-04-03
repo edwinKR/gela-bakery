@@ -63,5 +63,38 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   return userRef;
 };
+
+// Helper function to seed data to firestore database.
+export const addCollectionandDocs = async (collectionKey, objToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+
+  objToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
+
+// Helper function to convert collection data from firestore to the way my redux can handle.
+export const convertCollectionSnapshotToMap = collections => {
+  const arrayFormedCollection = collections.docs.map(doc => {
+    const { category, items } = doc.data();
+
+    return {
+      id: doc.id,
+      category,
+      routeName: encodeURI(category.toLowerCase()),
+      items,
+    };
+  });
+
+  return arrayFormedCollection.reduce((acc, collection) => {
+    acc[collection.category.toLowerCase()] = collection;
+    return acc;
+  }, {});
+};
+
 // Export the entire Firebase library just in case we need it in the app.
 export default firebase;

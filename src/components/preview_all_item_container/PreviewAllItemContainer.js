@@ -18,7 +18,9 @@ const PreviewAllItemContainer = props => {
 };
 
 const mapStateToProps = ({ shop: { shopData } }) => {
-  const shoppingDataList = Object.keys(shopData).map(singleKey => shopData[singleKey]);
+  const shoppingDataList = shopData
+    ? Object.keys(shopData).map(singleKey => shopData[singleKey])
+    : [];
   return { shoppingDataList };
 };
 

@@ -11,7 +11,11 @@ import CheckoutPage from './pages/checkout_page/CheckoutPage';
 
 import NavBar from './components/navbar/NavBar';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utilities';
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionandDocs,
+} from './firebase/firebase.utilities';
 import { setCurrentUser } from './redux/user/user_action';
 
 import './App.css';
@@ -24,6 +28,7 @@ class App extends React.Component {
       An observer method for current user. This the recommended way to get the current user)
       This is a Firebase feature that allows user persistence. It's an open subscriber that listens to state changes on the Firebase backend. 
     */
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         // If user is signed in.
@@ -45,6 +50,15 @@ class App extends React.Component {
       } else {
         // No user is signed in. (In this case, userAuth will be already set to null)
         this.props.setCurrentUser(userAuth);
+
+        // const shopDataArray = Object.keys(this.props.shopData).map(key => {
+        //   return {
+        //     category: this.props.shopData[key].category,
+        //     items: this.props.shopData[key].items,
+        //   };
+        // });
+
+        // addCollectionandDocs('categories', shopDataArray);
       }
     });
   }
@@ -70,9 +84,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, shop }) => {
   return {
     currentUser: user.currentUser,
+    shopData: shop.shopData,
   };
 };
 

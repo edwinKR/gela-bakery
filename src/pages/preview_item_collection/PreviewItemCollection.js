@@ -20,8 +20,9 @@ const PreviewItemCollection = props => {
 };
 
 const mapStateToProps = (state, defaultProps) => {
+  const { shopData } = state.shop;
   const selectedRouteName = defaultProps.match.params.collectionRouteName;
-  const selectedCategoryCollection = state.shop.shopData[selectedRouteName];
+  const selectedCategoryCollection = shopData ? shopData[selectedRouteName] : null;
 
   return { selectedCategoryCollection };
 };

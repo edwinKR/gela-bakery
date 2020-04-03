@@ -1,11 +1,16 @@
-import SHOPPING_DUMMY_DATA from './shop_dummy_data';
+import { shopActionTypes } from './shop_types';
 
 const INITIAL_STATE = {
-  shopData: SHOPPING_DUMMY_DATA,
+  shopData: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case shopActionTypes.UPDATE_SHOP_DATA:
+      return {
+        ...state,
+        shopData: action.payload,
+      };
     default:
       return state;
   }
