@@ -50,15 +50,6 @@ class App extends React.Component {
       } else {
         // No user is signed in. (In this case, userAuth will be already set to null)
         this.props.setCurrentUser(userAuth);
-
-        // const shopDataArray = Object.keys(this.props.shopData).map(key => {
-        //   return {
-        //     category: this.props.shopData[key].category,
-        //     items: this.props.shopData[key].items,
-        //   };
-        // });
-
-        // addCollectionandDocs('categories', shopDataArray);
       }
     });
   }

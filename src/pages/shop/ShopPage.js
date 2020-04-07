@@ -20,18 +20,27 @@ class ShopPage extends React.Component {
 
   unsubscribeFromSnapshot = null;
 
-  componentDidMount() {
-    const categoriesRef = firestore.collection('categories');
+  async componentDidMount() {
+    const categoriesRef = await firestore.collection('categories');
+    const snapshot = await categoriesRef.get();
+    const shopDataMap = await convertCollectionSnapshotToMap(snapshot);
 
-    categoriesRef.onSnapshot(async snapshot => {
-      const shopDataMap = convertCollectionSnapshotToMap(snapshot);
+    this.props.updateShopData(shopDataMap);
 
-      this.props.updateShopData(shopDataMap);
-
-      this.setState({
-        loading: false,
-      });
+    this.setState({
+      loading: false,
     });
+
+    // Keeping the below code: Another way to utilize Firestore and retreiving data.
+    // categoriesRef.onSnapshot(async snapshot => {
+    //   const shopDataMap = convertCollectionSnapshotToMap(snapshot);
+
+    //   this.props.updateShopData(shopDataMap);
+
+    //   this.setState({
+    //     loading: false,
+    //   });
+    // });
   }
 
   render() {
