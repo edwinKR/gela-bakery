@@ -32,13 +32,19 @@ export default class Login extends React.Component {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      this.setState({
-        email: '',
-        password: '',
-      });
+      // this.setState({
+      //   email: '',
+      //   password: '',
+      // });
     } catch (error) {
       console.log(error);
+      alert('Invalid email/password. Please verify and try again.');
     }
+
+    this.setState({
+      email: '',
+      password: '',
+    });
   };
 
   render() {

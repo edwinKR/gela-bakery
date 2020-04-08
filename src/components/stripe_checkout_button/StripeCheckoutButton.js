@@ -17,7 +17,7 @@ const StripeCheckoutButton = props => {
       name="Gela's Bakery"
       image={imageLink}
       currency="USD"
-      description={`Your total is ${price}`}
+      description={`Your total is $${price}`}
       billingAddress
       shippingAddress
       label="Get Your Goodies"

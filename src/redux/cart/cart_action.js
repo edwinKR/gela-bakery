@@ -18,3 +18,15 @@ export const decrementItem = item => ({
   type: cartActionTypes.DECREMENT_ITEM,
   payload: item,
 });
+
+export const clearCart = () => {
+  return {
+    type: cartActionTypes.CLEAR_CART,
+  };
+};
+
+export const clearCartAsync = () => {
+  return async dispatch => {
+    await dispatch(clearCart());
+  };
+};

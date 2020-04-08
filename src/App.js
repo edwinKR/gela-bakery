@@ -11,11 +11,7 @@ import CheckoutPage from './pages/checkout_page/CheckoutPage';
 
 import NavBar from './components/navbar/NavBar';
 
-import {
-  auth,
-  createUserProfileDocument,
-  addCollectionandDocs,
-} from './firebase/firebase.utilities';
+import { auth, createUserProfileDocument } from './firebase/firebase.utilities';
 import { setCurrentUser } from './redux/user/user_action';
 
 import './App.css';

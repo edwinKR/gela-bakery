@@ -43,19 +43,20 @@ class SignupContainer extends React.Component {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
       await createUserProfileDocument(user, { displayName });
-
-      this.setState(
-        {
-          displayName: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        },
-        () => console.log(this.state),
-      );
     } catch (error) {
       console.log('New user creation error!', error.message);
+      alert('Password should be at least 6 characters!');
     }
+
+    this.setState(
+      {
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      },
+      () => console.log(this.state),
+    );
   };
 
   render() {

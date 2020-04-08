@@ -6,6 +6,10 @@ import SingleItem from '../../components/single_item/SingleItem';
 import './preview_item_collection.styles.scss';
 
 const PreviewItemCollection = props => {
+  if (!props.selectedCategoryCollection) {
+    return <div>No Data</div>;
+  }
+
   const { category, items } = props.selectedCategoryCollection;
   return (
     <div className="preview_item_collection">

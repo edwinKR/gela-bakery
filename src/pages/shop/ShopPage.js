@@ -2,50 +2,22 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { fetchShopDataAsync } from '../../redux/shop/shop_action';
+
 import PreviewAllItemContainer from '../../components/preview_all_item_container/PreviewAllItemContainer';
 import PreviewItemCollection from '../preview_item_collection/PreviewItemCollection';
-
-import { updateShopData } from '../../redux/shop/shop_action';
-
-import { firestore, convertCollectionSnapshotToMap } from '../../firebase/firebase.utilities';
 
 import WithSpinner from '../../components/with_spinner_HOC/WithSpinner';
 const PreviewAllItemContainerWithSpinner = WithSpinner(PreviewAllItemContainer);
 const PreviewItemCollectionWithSpinner = WithSpinner(PreviewItemCollection);
 
 class ShopPage extends React.Component {
-  state = {
-    loading: true,
-  };
-
-  unsubscribeFromSnapshot = null;
-
-  async componentDidMount() {
-    const categoriesRef = await firestore.collection('categories');
-    const snapshot = await categoriesRef.get();
-    const shopDataMap = await convertCollectionSnapshotToMap(snapshot);
-
-    this.props.updateShopData(shopDataMap);
-
-    this.setState({
-      loading: false,
-    });
-
-    // Keeping the below code: Another way to utilize Firestore and retreiving data.
-    // categoriesRef.onSnapshot(async snapshot => {
-    //   const shopDataMap = convertCollectionSnapshotToMap(snapshot);
-
-    //   this.props.updateShopData(shopDataMap);
-
-    //   this.setState({
-    //     loading: false,
-    //   });
-    // });
+  componentDidMount() {
+    this.props.fetchShopDataAsync();
   }
 
   render() {
-    const { match } = this.props;
-    const { loading } = this.state;
+    const { match, isFetchingShopData } = this.props;
 
     return (
       <div className="shop-page">
@@ -53,13 +25,13 @@ class ShopPage extends React.Component {
           exact
           path={`${match.path}`}
           render={defaultProps => (
-            <PreviewAllItemContainerWithSpinner isLoading={loading} {...defaultProps} />
+            <PreviewAllItemContainerWithSpinner isLoading={isFetchingShopData} {...defaultProps} />
           )}
         />
         <Route
           path={`${match.path}/:collectionRouteName`}
           render={defaultProps => (
-            <PreviewItemCollectionWithSpinner isLoading={loading} {...defaultProps} />
+            <PreviewItemCollectionWithSpinner isLoading={isFetchingShopData} {...defaultProps} />
           )}
         />
       </div>
@@ -67,10 +39,23 @@ class ShopPage extends React.Component {
   }
 }
 
-const mapDispatchtoProps = dispatch => {
+const mapStateToProps = props => {
+  let { shopData, isFetching } = props.shop;
+
+  // So the WithSpinner can be loaded.
+  if (!shopData && !isFetching) {
+    isFetching = true;
+  }
+
   return {
-    updateShopData: shopDataMap => dispatch(updateShopData(shopDataMap)),
+    isFetchingShopData: props.shop.isFetching,
   };
 };
 
-export default connect(null, mapDispatchtoProps)(ShopPage);
+const mapDispatchtoProps = dispatch => {
+  return {
+    fetchShopDataAsync: () => dispatch(fetchShopDataAsync()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(ShopPage);

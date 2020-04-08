@@ -8,37 +8,51 @@ import { auth } from '../../firebase/firebase.utilities';
 import CartIcon from '../cart_icon_component/cart_icon';
 import CartDropdown from '../cart_dropdown_component/cart_dropdown';
 
+import { clearCartAsync } from '../../redux/cart/cart_action';
+
 import './navbar.styles.scss';
 
-const NavBar = ({ currentUser, hidden }) => {
-  return (
-    <div className="navbar">
-      <div className="logo-container">
-        <Link to="/">HOME</Link>
-      </div>
+class NavBar extends React.Component {
+  handleLogOut = () => {
+    auth.signOut();
+    this.props.clearCartAsync();
+  };
 
-      <div className="option-container">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/contact">
-          CONTACT US
-        </Link>
-        {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
-            LOG OUT
-          </div>
-        ) : (
-          <Link className="option" to="/login">
-            LOG IN
+  render() {
+    const { currentUser, hidden } = this.props;
+    return (
+      <div className="navbar">
+        <div className="logo-container">
+          <Link to="/">HOME</Link>
+        </div>
+
+        <div className="option-container">
+          <Link className="option" to="/shop">
+            SHOP
           </Link>
-        )}
-        <CartIcon />
+          <Link className="option" to="/contact">
+            CONTACT US
+          </Link>
+          {currentUser ? (
+            <div
+              className="option"
+              onClick={() => {
+                this.handleLogOut();
+              }}>
+              LOG OUT
+            </div>
+          ) : (
+            <Link className="option" to="/login">
+              LOG IN
+            </Link>
+          )}
+          <CartIcon />
+        </div>
+        {hidden ? null : <CartDropdown />}
       </div>
-      {hidden ? null : <CartDropdown />}
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   const {
@@ -52,4 +66,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = dispatch => {
+  return {
+    clearCartAsync: () => dispatch(clearCartAsync()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
