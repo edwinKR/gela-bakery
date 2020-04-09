@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 // connect: is a HOC that allows us to modify our react components have access to the redux state.
@@ -16,16 +16,15 @@ import { setCurrentUser } from './redux/user/user_action';
 
 import './App.css';
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
+const App = props => {
+  const { setCurrentUser, currentUser } = props;
 
-  componentDidMount() {
+  useEffect(() => {
     /* 
-      An observer method for current user. This the recommended way to get the current user)
+      An observer method for current user. This the recommended way to get the current user.
       This is a Firebase feature that allows user persistence. It's an open subscriber that listens to state changes on the Firebase backend. 
     */
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         // If user is signed in.
         const userRef = await createUserProfileDocument(userAuth);
@@ -35,41 +34,37 @@ class App extends React.Component {
           // Auth approved user data retrieved from firestore DB
           const userData = snapShot.data();
 
-          this.props.setCurrentUser(
-            {
-              id: snapShot.id,
-              ...userData,
-            },
-            () => console.log(this.state),
-          );
+          setCurrentUser({
+            id: snapShot.id,
+            ...userData,
+          });
         });
       } else {
         // No user is signed in. (In this case, userAuth will be already set to null)
-        this.props.setCurrentUser(userAuth);
+        setCurrentUser(userAuth);
       }
     });
-  }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+    return () => {
+      // Clean up function that is similar to the 'ComponentWillUnmount'
+      unsubscribeFromAuth();
+    };
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <NavBar />
+  return (
+    <div>
+      <NavBar />
 
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route
-          path="/login"
-          render={() => (this.props.currentUser ? <Redirect to="/" /> : <LoginSignupPage />)}
-        />
-      </div>
-    );
-  }
-}
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/checkout" component={CheckoutPage} />
+      <Route path="/shop" component={ShopPage} />
+      <Route
+        path="/login"
+        render={() => (currentUser ? <Redirect to="/" /> : <LoginSignupPage />)}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = ({ user, shop }) => {
   return {
