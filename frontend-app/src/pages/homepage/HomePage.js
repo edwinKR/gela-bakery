@@ -2,7 +2,7 @@ import React from 'react';
 
 import MenuContainer from '../../components/menu_container/MenuContainer';
 
-import './homepage.style.scss';
+import './homepage.styles.scss';
 
 const HomePage = () => {
   return (

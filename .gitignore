@@ -25,3 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 node_mmodules
 node_modules
+node_modules
+frontend-app/node_modules
