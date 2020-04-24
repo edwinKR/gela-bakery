@@ -13,11 +13,10 @@ const StripeCheckoutButton = props => {
         url: 'payment',
         method: 'post',
         data: {
-          amount: price,
+          amount: price * 100,
           token,
         },
       });
-      console.log(response);
       alert(`Payment Success! Enjoy!`);
     } catch (error) {
       console.log(error);
@@ -25,6 +24,7 @@ const StripeCheckoutButton = props => {
     }
   };
 
+  console.log(price);
   return (
     <StripeCheckout
       token={onToken}
