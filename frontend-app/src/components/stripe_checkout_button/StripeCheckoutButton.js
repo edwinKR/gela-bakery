@@ -24,7 +24,6 @@ const StripeCheckoutButton = props => {
     }
   };
 
-  console.log(price);
   return (
     <StripeCheckout
       token={onToken}

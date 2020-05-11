@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-return */
-/* eslint-disable no-alert */
 import React, { useState } from 'react';
 
 import FormInput from '../form_input/FormInput';
@@ -19,7 +17,7 @@ const SignupContainer = () => {
 
   const { displayName, email, password, confirmPassword } = signupInfo;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setSignupInfo({
@@ -28,7 +26,7 @@ const SignupContainer = () => {
     });
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {

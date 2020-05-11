@@ -2,7 +2,7 @@ import React from 'react';
 import SingleItem from '../single_item/SingleItem';
 import './preview_all_items.styles.scss';
 
-const PreviewAllItem = props => {
+const PreviewAllItem = (props) => {
   const { category, items } = props;
   return (
     <div className="preview-all-items">
@@ -10,7 +10,7 @@ const PreviewAllItem = props => {
       <div className="preview-container">
         {items
           .filter((item, idx) => idx < 4)
-          .map(singleItem => {
+          .map((singleItem) => {
             return <SingleItem key={singleItem.id} singleItem={singleItem} />;
           })}
       </div>

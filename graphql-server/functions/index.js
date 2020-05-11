@@ -8,7 +8,7 @@ const graphqlServer = configureServer();
 
 const graphqlHandler = graphqlServer.createHandler({
   cors: {
-    origin: true,
+    origin: '*',
     credentials: true,
   },
 });

@@ -28,3 +28,5 @@
 
 node_modules
 frontend-app/node_modules
+
+/graphql-server/functions/service-account.json

@@ -97,6 +97,4 @@ const resolvers = {
   },
 };
 
-console.log('===============', resolvers.Query.getCategoriesByName(null, { name: 'Macaroon' }));
-
 module.exports = resolvers;

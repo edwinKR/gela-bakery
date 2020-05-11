@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -9,14 +8,14 @@ import './menu_container.style.scss';
 const MenuContainer = ({ category }) => {
   return (
     <div className="menu-container">
-      {category.map(singleCategory => (
+      {category.map((singleCategory) => (
         <MenuItem key={singleCategory.name} singleCategory={singleCategory} />
       ))}
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { category } = state.menuDirectory;
   return { category };
 };

@@ -9,14 +9,15 @@ import ShopPage from './pages/shop/ShopPage';
 import LoginSignupPage from './pages/login_signup_page/LoginSignupPage';
 import CheckoutPage from './pages/checkout_page/CheckoutPage';
 
-import NavBar from './components/navbar/NavBar';
+// import NavBar from './components/navbar/NavBar';
+import { default as NavBar } from './components/navbar/NavBar_Container';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utilities';
 import { setCurrentUser } from './redux/user/user_action';
 
 import './App.css';
 
-const App = props => {
+const App = (props) => {
   const { setCurrentUser, currentUser } = props;
 
   useEffect(() => {
@@ -24,13 +25,13 @@ const App = props => {
       An observer method for current user. This the recommended way to get the current user.
       This is a Firebase feature that allows user persistence. It's an open subscriber that listens to state changes on the Firebase backend. 
     */
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         // If user is signed in.
         const userRef = await createUserProfileDocument(userAuth);
 
         // Subscribe(listen) to this userRef for any changes on this data.
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           // Auth approved user data retrieved from firestore DB
           const userData = snapShot.data();
 
@@ -73,10 +74,10 @@ const mapStateToProps = ({ user, shop }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   // dispatch function: Informs redux that an object will be sent as an action object.
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user)),
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
   };
 };
 

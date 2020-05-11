@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utilities';
-import CartIcon from '../cart_icon_component/cart_icon';
+// import CartIcon from '../cart_icon_component/cart_icon';
+import { default as CartIcon } from '../cart_icon_component/cart_icon_container';
 import CartDropdown from '../cart_dropdown_component/cart_dropdown';
 
 import { clearCartAsync } from '../../redux/cart/cart_action';
@@ -19,6 +20,7 @@ class NavBar extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const { currentUser, hidden } = this.props;
     return (
       <div className="navbar">
@@ -54,19 +56,19 @@ class NavBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const {
     user: { currentUser },
-    cart: { hidden },
+    // cart: { hidden },
   } = state;
 
   return {
     currentUser,
-    hidden,
+    // hidden,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     clearCartAsync: () => dispatch(clearCartAsync()),
   };

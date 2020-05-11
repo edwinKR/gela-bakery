@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable import/prefer-default-export */
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from 'firebase/app';
 
@@ -69,7 +67,7 @@ export const addCollectionandDocs = async (collectionKey, objToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
   const batch = firestore.batch();
 
-  objToAdd.forEach(obj => {
+  objToAdd.forEach((obj) => {
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
   });
@@ -78,8 +76,8 @@ export const addCollectionandDocs = async (collectionKey, objToAdd) => {
 };
 
 // Helper function to convert collection data from firestore to the way my redux can handle.
-export const convertCollectionSnapshotToMap = collections => {
-  const arrayFormedCollection = collections.docs.map(doc => {
+export const convertCollectionSnapshotToMap = (collections) => {
+  const arrayFormedCollection = collections.docs.map((doc) => {
     const { category, items } = doc.data();
 
     return {
