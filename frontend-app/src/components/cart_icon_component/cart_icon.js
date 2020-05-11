@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 // import { toggleCartHidden } from '../../redux/cart/cart_action';
 
@@ -18,16 +18,16 @@ const CartIcon = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { cartItems } = state.cart;
-  const totalCartItems = cartItems.reduce((currentTotal, cartItem) => {
-    return currentTotal + cartItem.quantity;
-  }, 0);
+// const mapStateToProps = (state) => {
+//   const { cartItems } = state.cart;
+//   const totalCartItems = cartItems.reduce((currentTotal, cartItem) => {
+//     return currentTotal + cartItem.quantity;
+//   }, 0);
 
-  return {
-    totalCartItems,
-  };
-};
+//   return {
+//     totalCartItems,
+//   };
+// };
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
 //   };
 // };
 
-export default connect(mapStateToProps)(CartIcon);
+export default CartIcon;

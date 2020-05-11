@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { auth } from '../../firebase/firebase.utilities';
 // import CartIcon from '../cart_icon_component/cart_icon';
 import { default as CartIcon } from '../cart_icon_component/cart_icon_container';
-import CartDropdown from '../cart_dropdown_component/cart_dropdown';
-
+// import CartDropdown from '../cart_dropdown_component/cart_dropdown';
+import { default as CartDropdown } from '../cart_dropdown_component/cart_dropdown_container';
 import { clearCartAsync } from '../../redux/cart/cart_action';
 
 import './navbar.styles.scss';

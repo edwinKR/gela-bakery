@@ -2,8 +2,9 @@ import React from 'react';
 
 import './cart_item.styles.scss';
 
-const CartItem = ({ singleCartItem }) => {
-  const { name, imageUrl, price, quantity } = singleCartItem;
+const CartItem = (props) => {
+  console.log('++++++++++', props);
+  const { name, imageUrl, price, quantity } = props.singleCartItem;
 
   return (
     <div className="single-cart-item">

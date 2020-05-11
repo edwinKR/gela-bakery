@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 import CartIcon from './cart_icon';
@@ -11,13 +11,29 @@ const TOGGLE_CART_HIDDEN = gql`
   }
 `;
 
+const GET_ITEM_COUNT = gql`
+  {
+    itemCount @client
+  }
+`;
+
 const CartIconContainer = () => {
   return (
-    <Mutation mutation={TOGGLE_CART_HIDDEN}>
-      {(toggleCartHidden) => {
-        return <CartIcon toggleCartHidden={toggleCartHidden} />;
+    <Query query={GET_ITEM_COUNT}>
+      {(queryProps) => {
+        const {
+          data: { itemCount },
+        } = queryProps;
+
+        return (
+          <Mutation mutation={TOGGLE_CART_HIDDEN}>
+            {(toggleCartHidden) => {
+              return <CartIcon toggleCartHidden={toggleCartHidden} totalCartItems={itemCount} />;
+            }}
+          </Mutation>
+        );
       }}
-    </Mutation>
+    </Query>
   );
 };
 

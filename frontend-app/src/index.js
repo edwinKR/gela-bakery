@@ -66,9 +66,12 @@ const client = new ApolloClient({
 //   .then((res) => console.log(res));
 
 // Utilizing the 'cache' defined above. Cache will act like a localStorage.
+// Think of this as the initial state setup in our localCache
 client.writeData({
   data: {
     cartHidden: true,
+    cartItems: [],
+    itemCount: 0,
   },
 });
 

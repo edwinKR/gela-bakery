@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import ButtonComponent from '../button_component/ButtonComponent';
@@ -7,13 +7,13 @@ import CartItem from '../cart_item_component/cart_item';
 
 import './cart_dropdown.styles.scss';
 
-const CartDropdown = props => {
+const CartDropdown = (props) => {
   const { cartItems } = props;
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
         {cartItems.length ? (
-          cartItems.map(singleCartItem => {
+          cartItems.map((singleCartItem) => {
             return <CartItem key={singleCartItem.id} singleCartItem={singleCartItem} />;
           })
         ) : (
@@ -25,9 +25,9 @@ const CartDropdown = props => {
   );
 };
 
-const mapStateToProps = state => {
-  const { cartItems } = state.cart;
-  return { cartItems };
-};
+// const mapStateToProps = state => {
+//   const { cartItems } = state.cart;
+//   return { cartItems };
+// };
 
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+export default withRouter(CartDropdown);

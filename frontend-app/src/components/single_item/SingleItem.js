@@ -1,13 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import ButtonComponent from '../button_component/ButtonComponent';
 
-import { addItem } from '../../redux/cart/cart_action';
+// import { addItem } from '../../redux/cart/cart_action';
 
 import './single_item.styles.scss';
 
-const SingleItem = props => {
+const SingleItem = (props) => {
   const { name, imageUrl, price } = props.singleItem;
   const { addItem } = props;
   return (
@@ -24,10 +24,10 @@ const SingleItem = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addItem: item => dispatch(addItem(item)),
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addItem: item => dispatch(addItem(item)),
+//   };
+// };
 
-export default connect(null, mapDispatchToProps)(SingleItem);
+export default SingleItem;
