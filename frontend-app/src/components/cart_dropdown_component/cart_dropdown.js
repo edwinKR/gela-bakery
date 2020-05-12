@@ -8,7 +8,7 @@ import CartItem from '../cart_item_component/cart_item';
 import './cart_dropdown.styles.scss';
 
 const CartDropdown = (props) => {
-  const { cartItems } = props;
+  const { cartItems, toggleCartHidden } = props;
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -20,7 +20,13 @@ const CartDropdown = (props) => {
           <span className="cart-empty">Cart Empty</span>
         )}
       </div>
-      <ButtonComponent onClick={() => props.history.push('/checkout')}>CHECKOUT</ButtonComponent>
+      <ButtonComponent
+        onClick={() => {
+          props.history.push('/checkout');
+          toggleCartHidden();
+        }}>
+        CHECKOUT
+      </ButtonComponent>
     </div>
   );
 };

@@ -7,7 +7,6 @@ import StripeCheckoutButton from '../../components/stripe_checkout_button/Stripe
 import './checkout_page.styles.scss';
 
 const CheckoutPage = (props) => {
-  console.log('-=---=-=-=-= ', props);
   const { cartItems, totalPrice } = props;
 
   return (

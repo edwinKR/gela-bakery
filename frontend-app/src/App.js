@@ -67,10 +67,10 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = ({ user, shop }) => {
+const mapStateToProps = ({ user }) => {
   return {
     currentUser: user.currentUser,
-    shopData: shop.shopData,
+    // shopData: shop.shopData,
   };
 };
 
