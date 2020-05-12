@@ -40,3 +40,14 @@ export const getCartItemQuantity = (cartItems) => {
     return currentTotalQuantity + cartItem.quantity;
   }, 0);
 };
+
+export const getCartTotalPrice = (cartItems) => {
+  const totalPrice = cartItems.reduce((currentCartItemTotal, cartItem) => {
+    return currentCartItemTotal + cartItem.quantity * cartItem.price;
+  }, 0);
+  return totalPrice;
+};
+
+export const deleteEntireItem = (cartItems, singleItem) => {
+  return cartItems.filter((item) => item.id !== singleItem.id);
+};

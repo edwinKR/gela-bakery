@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import LoginSignupPage from './pages/login_signup_page/LoginSignupPage';
-import CheckoutPage from './pages/checkout_page/CheckoutPage';
-
+// import CheckoutPage from './pages/checkout_page/CheckoutPage';
+import { default as CheckoutPage } from './pages/checkout_page/CheckoutPage_Container';
 // import NavBar from './components/navbar/NavBar';
 import { default as NavBar } from './components/navbar/NavBar_Container';
 

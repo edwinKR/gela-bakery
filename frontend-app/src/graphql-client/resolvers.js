@@ -1,7 +1,13 @@
 // Not doing anything with the server. This resolver.js file is to define schema for local client.
 import { gql } from 'apollo-boost';
 
-import { addItemToCart, getCartItemQuantity } from './cart_util';
+import {
+  addItemToCart,
+  decrementItemFromCart,
+  getCartItemQuantity,
+  getCartTotalPrice,
+  deleteEntireItem,
+} from './cart_util';
 
 // Type definition (typeDefs) of Mutation defined below (for graphQL)
 // "extend": Checks if GraphQL server has the type. If not, will define the new type following.
@@ -13,6 +19,8 @@ export const typeDefs = gql`
   extend type Mutation {
     ToggleCartHidden: Boolean!
     AddItemToCart(item: Item!): [Item]!
+    DecrementItemFromCart(item: Item!): [Item]!
+    DeleteEntireItem(item: Item!): [Item]!
   }
 `;
 
@@ -35,6 +43,35 @@ const GET_ITEM_COUNT = gql`
     itemCount @client
   }
 `;
+
+const GET_CART_TOTAL_PRICE = gql`
+  {
+    cartTotalPrice @client
+  }
+`;
+
+const updateCartItemsBasedQueries = (cache, newCartItems) => {
+  cache.writeQuery({
+    query: GET_CART_ITEMS,
+    data: {
+      cartItems: newCartItems,
+    },
+  });
+
+  cache.writeQuery({
+    query: GET_ITEM_COUNT,
+    data: {
+      itemCount: getCartItemQuantity(newCartItems),
+    },
+  });
+
+  cache.writeQuery({
+    query: GET_CART_TOTAL_PRICE,
+    data: {
+      cartTotalPrice: getCartTotalPrice(newCartItems),
+    },
+  });
+};
 
 // Actual mutation definition for our javascript
 export const resolvers = {
@@ -70,19 +107,35 @@ export const resolvers = {
 
       const newCartItems = addItemToCart(data.cartItems, item);
 
-      cache.writeQuery({
-        query: GET_ITEM_COUNT,
-        data: {
-          itemCount: getCartItemQuantity(newCartItems),
-        },
+      updateCartItemsBasedQueries(cache, newCartItems);
+
+      return newCartItems;
+    },
+
+    decrementItemFromCart: (_root, _args, { cache }, _info) => {
+      const { item } = _args;
+
+      const data = cache.readQuery({
+        query: GET_CART_ITEMS,
       });
 
-      cache.writeQuery({
+      const newCartItems = decrementItemFromCart(data.cartItems, item);
+
+      updateCartItemsBasedQueries(cache, newCartItems);
+
+      return newCartItems;
+    },
+
+    deleteEntireItem: (_root, _args, { cache }) => {
+      const { item } = _args;
+
+      const data = cache.readQuery({
         query: GET_CART_ITEMS,
-        data: {
-          cartItems: newCartItems,
-        },
       });
+
+      const newCartItems = deleteEntireItem(data.cartItems, item);
+
+      updateCartItemsBasedQueries(cache, newCartItems);
 
       return newCartItems;
     },

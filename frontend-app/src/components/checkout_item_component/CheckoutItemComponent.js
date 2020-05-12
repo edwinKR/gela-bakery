@@ -1,11 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import { deleteEntireItem, addItem, decrementItem } from '../../redux/cart/cart_action';
+// import { deleteEntireItem, addItem, decrementItem } from '../../redux/cart/cart_action';
 
 import './checkout_item_component.styles.scss';
 
-const CheckoutItemComponent = ({ cartItem, deleteEntireItem, addItem, decrementItem }) => {
+const CheckoutItemComponent = (props) => {
+  const { cartItem, deleteEntireItem, addItem, decrementItem } = props;
   const { name, imageUrl, price, quantity } = cartItem;
   return (
     <div className="checkout-item">
@@ -19,7 +20,12 @@ const CheckoutItemComponent = ({ cartItem, deleteEntireItem, addItem, decrementI
           -
         </div>
         <input type="number" id="number" value={quantity} />
-        <div className="value-button" onClick={() => addItem(cartItem)}>
+        <div
+          className="value-button"
+          onClick={() => {
+            console.log('increasing cartItem: ', cartItem);
+            addItem(cartItem);
+          }}>
           +
         </div>
       </span>
@@ -30,11 +36,12 @@ const CheckoutItemComponent = ({ cartItem, deleteEntireItem, addItem, decrementI
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteEntireItem: cartItem => dispatch(deleteEntireItem(cartItem)),
-    addItem: cartItem => dispatch(addItem(cartItem)),
-    decrementItem: cartItem => dispatch(decrementItem(cartItem)),
-  };
-};
-export default connect(null, mapDispatchToProps)(CheckoutItemComponent);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     deleteEntireItem: (cartItem) => dispatch(deleteEntireItem(cartItem)),
+//     addItem: (cartItem) => dispatch(addItem(cartItem)),
+//     decrementItem: (cartItem) => dispatch(decrementItem(cartItem)),
+//   };
+// };
+
+export default CheckoutItemComponent;

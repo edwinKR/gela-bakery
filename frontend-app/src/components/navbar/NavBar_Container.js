@@ -14,7 +14,6 @@ const NavBar_Container = () => {
   return (
     <Query query={GET_CART_HIDDEN}>
       {(props) => {
-        console.log(props);
         const { cartHidden } = props.data;
         return <NavBar hidden={cartHidden} />;
       }}

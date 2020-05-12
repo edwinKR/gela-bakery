@@ -1,12 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import CheckoutItemComponent from '../../components/checkout_item_component/CheckoutItemComponent';
+import { default as CheckoutItemComponent } from '../../components/checkout_item_component/CheckoutItemComponent_Container';
 import StripeCheckoutButton from '../../components/stripe_checkout_button/StripeCheckoutButton';
 
 import './checkout_page.styles.scss';
 
-const CheckoutPage = props => {
+const CheckoutPage = (props) => {
+  console.log('-=---=-=-=-= ', props);
   const { cartItems, totalPrice } = props;
 
   return (
@@ -28,7 +29,7 @@ const CheckoutPage = props => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map(item => (
+      {cartItems.map((item) => (
         <CheckoutItemComponent key={item.id} cartItem={item} />
       ))}
       <div className="checkout-total">Total: ${totalPrice}</div>
@@ -38,18 +39,18 @@ const CheckoutPage = props => {
   );
 };
 
-const mapStateToProps = props => {
-  const {
-    cart: { cartItems },
-  } = props;
-  const totalPrice = cartItems.reduce((accumulatedPrice, cartItem) => {
-    return accumulatedPrice + cartItem.quantity * cartItem.price;
-  }, 0);
+// const mapStateToProps = (props) => {
+//   const {
+//     cart: { cartItems },
+//   } = props;
+//   const totalPrice = cartItems.reduce((accumulatedPrice, cartItem) => {
+//     return accumulatedPrice + cartItem.quantity * cartItem.price;
+//   }, 0);
 
-  return {
-    cartItems,
-    totalPrice,
-  };
-};
+//   return {
+//     cartItems,
+//     totalPrice,
+//   };
+// };
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default CheckoutPage;

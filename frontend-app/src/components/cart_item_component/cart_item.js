@@ -3,7 +3,6 @@ import React from 'react';
 import './cart_item.styles.scss';
 
 const CartItem = (props) => {
-  console.log('++++++++++', props);
   const { name, imageUrl, price, quantity } = props.singleCartItem;
 
   return (
